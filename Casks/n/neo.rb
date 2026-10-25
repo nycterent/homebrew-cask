@@ -7,7 +7,7 @@ cask "neo" do
 
   url "https://github.com/hughhowey/neo/releases/download/v#{version}/NEO-#{version}-#{arch}.dmg"
   name "NEO"
-  desc "Distraction-free word processor for book authors"
+  desc "Word processor"
   homepage "https://github.com/hughhowey/neo"
 
   livecheck do
@@ -17,9 +17,16 @@ cask "neo" do
     end
   end
 
+  auto_updates true
   depends_on macos: :monterey
 
   app "NEO.app"
 
-  zap trash: "~/Library/Application Support/neo"
+  zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.hughhowey.neo.sfl*",
+    "~/Library/Application Support/neo",
+    "~/Library/Caches/neo-updater",
+    "~/Library/HTTPStorages/com.hughhowey.neo",
+    "~/Library/Preferences/com.hughhowey.neo.plist",
+  ]
 end
